@@ -10,3 +10,8 @@ storage/skills.json
 
 # dev artifacts
 *.log
+
+# internal planning files — never publish
+PLAN.md
+The idea.html
+The idea_files/
