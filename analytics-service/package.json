@@ -1,0 +1,12 @@
+{
+  "name": "skill-broker-analytics",
+  "version": "0.1.0",
+  "description": "Opt-in usage event collector for the Skill Broker",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

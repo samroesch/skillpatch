@@ -1,6 +1,4 @@
-# compiled binaries
-analytics-service/*.exe
-analytics-service/analytics
+# compiled binaries (analytics service is now Node — no build step)
 
 # runtime
 broker-plugin/cache/
