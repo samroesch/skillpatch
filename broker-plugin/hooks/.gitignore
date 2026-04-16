@@ -1,7 +1,1 @@
-# Compiled binaries — run scripts/build_hook.sh to generate
-prompt_broker_windows_amd64.exe
-prompt_broker_darwin_amd64
-prompt_broker_darwin_arm64
-prompt_broker_linux_amd64
-prompt_broker_linux_arm64
 broker_debug.log

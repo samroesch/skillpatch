@@ -1,7 +1,6 @@
 # compiled binaries
 analytics-service/*.exe
 analytics-service/analytics
-broker-plugin/hooks/prompt_broker.exe
 
 # runtime
 broker-plugin/cache/
