@@ -20,7 +20,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"math"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -159,39 +158,64 @@ func loadIndex(root string) []Skill {
 // ── search ────────────────────────────────────────────────────────────────────
 
 func searchLocal(prompt string, skills []Skill, topK int, scoreThresh float64, minTerms int) []Skill {
+	// tokenise and deduplicate query terms, strip punctuation, skip short words
 	rawTerms := strings.Fields(strings.ToLower(prompt))
+	querySet := map[string]bool{}
 	var queryTerms []string
 	for _, t := range rawTerms {
-		if len(t) > 2 {
+		t = strings.Trim(t, ".,!?;:'\"()")
+		if len(t) > 2 && !querySet[t] {
+			querySet[t] = true
 			queryTerms = append(queryTerms, t)
 		}
+	}
+	if len(queryTerms) == 0 {
+		return nil
 	}
 
 	var scored []Skill
 	for _, s := range skills {
-		hay := strings.ToLower(strings.Join([]string{
-			s.Name, s.Summary,
-			strings.Join(s.Tags, " "),
-			strings.Join(s.Keywords, " "),
-		}, " "))
-
-		var matching []string
-		seen := map[string]bool{}
-		for _, t := range queryTerms {
-			if !seen[t] && strings.Contains(hay, t) {
-				matching = append(matching, t)
-				seen[t] = true
+		// build a whole-word set from the skill's keyword list only
+		// (name/summary/tags are too broad to drive matching)
+		kwWords := map[string]bool{}
+		for _, kw := range s.Keywords {
+			for _, w := range strings.Fields(strings.ToLower(kw)) {
+				kwWords[w] = true
 			}
 		}
+
+		// count query terms that exactly match a keyword word
+		var matching []string
+		matchSeen := map[string]bool{}
+		for _, qt := range queryTerms {
+			if kwWords[qt] && !matchSeen[qt] {
+				matching = append(matching, qt)
+				matchSeen[qt] = true
+			}
+		}
+
+		// gate 1: minimum absolute matches
 		if len(matching) < minTerms {
 			continue
 		}
 
+		// gate 2: coverage — must match ≥25% of the skill's keyword list
+		// prevents 2 generic words triggering a skill with many keywords
+		numKW := len(s.Keywords)
+		if numKW == 0 {
+			numKW = 1
+		}
+		coverage := float64(len(matching)) / float64(numKW)
+		if coverage < 0.25 {
+			continue
+		}
+
+		// scoring: coverage drives score; trust score adds a small bonus
 		verBonus := 0.0
 		if s.Verified {
-			verBonus = 0.75
+			verBonus = 0.5
 		}
-		sc := float64(len(matching))*2.0 + math.Log1p(float64(s.UsageCount)) + verBonus
+		sc := coverage*10.0 + s.TrustScore*0.1 + verBonus
 		if sc < scoreThresh {
 			continue
 		}
