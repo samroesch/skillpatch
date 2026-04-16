@@ -1,107 +1,108 @@
-# Skill Broker MVP
+# Skill Broker
 
-A starter kit for a Claude Code "skill broker" that:
+A trust-first skill registry and routing layer for Claude Code.
 
-1. installs one always-on broker plugin locally
-2. intercepts user prompts with a `UserPromptSubmit` hook
-3. queries a lightweight remote registry for relevant skills
-4. injects a compact recommendation block back into Claude Code
-5. optionally tracks anonymous usage events for ranking
+Intercepts prompts via a `UserPromptSubmit` hook, matches them against a local index, and injects relevant skill content directly into the Claude context — **no prompt text ever leaves your machine**.
 
-This is designed as a **cheap-first architecture**:
-- plugin source can live in GitHub
-- marketplace can be a static JSON file in Git
-- registry can be a tiny HTTP service
-- real skills can remain distributed across many repos
-
-## What is included
-
-- `broker-plugin/` — Claude Code plugin skeleton
-- `registry-service/` — tiny FastAPI registry/search service
-- `storage/skills.json` — example skill index
-- `marketplace.json` — example catalog entry for the broker plugin
-- `scripts/demo_prompt_payload.json` — sample payload for local testing
-
-## Suggested architecture
-
-### Local pieces
-- **Broker plugin**: the only thing users must install first
-- **Hook**: runs on `UserPromptSubmit` and sends prompt text to the registry
-- **Local skill install path**: later, selected skills can be installed as regular plugins
-
-### Remote pieces
-- **Registry/index**: metadata only
-- **Analytics**: optional event logging and ranking
-- **Package hosting**: GitHub repos owned by maintainers
-
-## Flow
+## How it works
 
 1. User types a prompt in Claude Code
-2. Broker hook receives the prompt JSON on stdin
-3. Hook sends prompt text to the registry `/search`
-4. Registry returns top matching skills plus install hints
-5. Hook emits `additionalContext` telling Claude about the most relevant skills
-6. Claude can follow the recommendation immediately
-7. If the user installs a skill later, usage can be logged via the broker plugin or registry
+2. The broker hook reads the prompt locally and searches `local_index.json` by keyword
+3. Matching skills are ranked by trust score and filtered by your configured risk level
+4. The hook fetches the skill content (a static `.md` file) from GitHub by ID
+5. Content is injected as `additionalContext` — Claude sees it, the registry never does
 
-## Why this MVP shape
+The remote registry is **write-only for reads**: it serves static files (index + skill `.md` files). It never receives prompt text. The only outbound write is an optional anonymous event (`skill_id` only, no prompt) sent to the analytics service if you opt in.
 
-It avoids betting on unsupported remote skill loading.
-Instead, it uses:
-- dynamic search at prompt time
-- local plugin install for durable capabilities
-- cheap static hosting for marketplace/plugin metadata
+## Repo structure
 
-## Local dev quickstart
+```
+broker-plugin/
+  hooks/
+    prompt_broker.go       # hook binary source (Go)
+    prompt_broker          # shell wrapper — picks correct compiled binary
+  local_index.json         # local skill metadata cache
+  config.json              # risk_level, index update interval
+  skills/
+    discover-skills/       # /broker skill for searching the registry
 
-### 1) Start the registry
+storage/
+  index.json               # canonical registry index
+  skills/                  # skill .md files served as raw GitHub content
+    meeting-notes-polisher.md
+    landing-page-launcher.md
+    pdf-processor.md
+    csv-insight-kit.md
 
-```bash
-cd registry-service
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app:app --reload --port 8787
+analytics-service/
+  main.go                  # tiny Go HTTP server — POST /events only
+
+scripts/
+  compute_scores.go        # nightly trust score recomputation
+  build_hook.sh            # cross-platform binary build
+
+.github/workflows/
+  update-scores.yml        # nightly cron: fetch events, recompute, commit index
 ```
 
-### 2) Test the hook script directly
+## Trust scores
+
+Each skill carries a `trust_score` (0–5) computed nightly from weighted usage signals:
+
+| Event    | Weight |
+|----------|--------|
+| inject   | +1     |
+| pin      | +5     |
+| install  | +10    |
+| flag     | −20    |
+
+Verified skills get a score floor of 3.0. Scores are log-scaled so early usage matters but doesn't dominate.
+
+## Risk levels
+
+Set in `broker-plugin/config.json`:
+
+- `strict` — verified skills only, trust score ≥ 4.0
+- `balanced` (default) — verified preferred, trust score ≥ 3.0
+- `open` — all skills, trust score ≥ 2.0
+
+## Install tiers
+
+**Ephemeral** — broker injects skill content for the current prompt only. Nothing is saved.
+
+**Pinned** — skill is copied to `~/.claude/skills/` so Claude's native system auto-invokes it on future matching prompts.
+
+**Plugin** — full Claude Code plugin install for skills that ship with commands or hooks of their own.
+
+## Building the hook binary
+
+Requires Go 1.22+:
 
 ```bash
-cat scripts/demo_prompt_payload.json | \
-  REGISTRY_URL=http://127.0.0.1:8787 \
-  python broker-plugin/hooks/prompt_broker.py
+bash scripts/build_hook.sh
 ```
 
-Expected result: JSON with `continue: true` and an `additionalContext` block.
+Produces binaries for Windows, macOS (arm64/amd64), and Linux in `broker-plugin/hooks/`.
 
-### 3) Package the plugin
-
-Validate against your local Claude Code installation:
+## Testing the hook locally
 
 ```bash
-claude plugin validate broker-plugin
+cat scripts/demo_prompt_payload.json | broker-plugin/hooks/prompt_broker
 ```
 
-### 4) Install locally for testing
+## Analytics service
 
-From a repo containing this plugin and marketplace:
+The analytics service is a minimal Go HTTP server with a single endpoint:
 
-```bash
-claude plugin marketplace add .
-claude plugin install skill-broker@skill-broker-market
+```
+POST /events   { "event": "inject|pin|install|flag", "skill_id": "..." }
+GET  /health
 ```
 
-## Notes
+It never accepts prompt text. Deploy to Railway (or anywhere) and set the `ANALYTICS_URL` secret in this repo's GitHub settings to enable nightly score updates.
 
-This repo intentionally keeps the plugin simple and conservative:
-- no hidden telemetry by default
-- usage logging is opt-in via environment variable
-- remote registry only sees the current prompt text unless you expand the payload
+## Privacy
 
-## Next upgrades
-
-- add `/broker-search` command backed by MCP
-- add install helper that shells out to `claude plugin install`
-- add trust badges and commit SHA pinning
-- add creator reputation and success-rate ranking
-- add local cache of recent registry responses
+- Prompt text never leaves your machine
+- The hook only fetches skill content by ID (a static file request)
+- Usage events are opt-in and contain only `skill_id` + event type
