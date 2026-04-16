@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Broker — Registry</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      max-width: 860px;
+      margin: 0 auto 2.5rem;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    header h1 span {
+      color: #58a6ff;
+    }
+
+    header p {
+      margin-top: 0.4rem;
+      color: #8b949e;
+      font-size: 0.9rem;
+    }
+
+    .install-hint {
+      margin-top: 1rem;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.8rem;
+      color: #8b949e;
+    }
+
+    .install-hint strong { color: #e6edf3; }
+
+    .grid {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem 1.5rem;
+      align-items: start;
+      transition: border-color 0.15s;
+    }
+
+    .card:hover { border-color: #58a6ff; }
+
+    .card-left { min-width: 0; }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-verified {
+      font-size: 0.7rem;
+      font-weight: 500;
+      background: #1f4c2e;
+      color: #3fb950;
+      border: 1px solid #2ea043;
+      border-radius: 12px;
+      padding: 0.1rem 0.5rem;
+    }
+
+    .card-summary {
+      margin-top: 0.35rem;
+      color: #8b949e;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .card-tags {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      background: #21262d;
+      color: #8b949e;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 0.1rem 0.5rem;
+    }
+
+    .card-right {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .score {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #f0b429;
+      line-height: 1;
+    }
+
+    .score-label {
+      font-size: 0.7rem;
+      color: #8b949e;
+      margin-top: 0.15rem;
+    }
+
+    .usage {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: #8b949e;
+    }
+
+    .stars {
+      display: inline-flex;
+      gap: 1px;
+      font-size: 0.75rem;
+      vertical-align: middle;
+    }
+
+    .star-full  { color: #f0b429; }
+    .star-half  { color: #f0b429; opacity: 0.5; }
+    .star-empty { color: #30363d; }
+
+    .meta {
+      max-width: 860px;
+      margin: 2rem auto 0;
+      font-size: 0.75rem;
+      color: #484f58;
+      text-align: right;
+    }
+
+    .loading {
+      max-width: 860px;
+      margin: 4rem auto;
+      text-align: center;
+      color: #484f58;
+    }
+
+    .error {
+      max-width: 860px;
+      margin: 2rem auto;
+      background: #2d1214;
+      border: 1px solid #6e2c2f;
+      border-radius: 6px;
+      padding: 1rem;
+      color: #f85149;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Skill <span>Broker</span></h1>
+  <p>A trust-first skill registry for Claude Code. Prompts never leave your machine.</p>
+  <div class="install-hint">
+    <strong>/plugin marketplace add samroesch/skill-broker</strong>
+    &nbsp;·&nbsp; then &nbsp;
+    <strong>/plugin install skill-broker@skill-broker</strong>
+  </div>
+</header>
+
+<div class="grid" id="grid">
+  <div class="loading">Loading registry…</div>
+</div>
+
+<div class="meta" id="meta"></div>
+
+<script>
+  const INDEX_URL = 'https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/index.json';
+
+  function stars(score) {
+    const full  = Math.floor(score);
+    const half  = score - full >= 0.4 ? 1 : 0;
+    const empty = 5 - full - half;
+    return '<span class="stars">'
+      + '★'.repeat(full).split('').map(s => `<span class="star-full">${s}</span>`).join('')
+      + (half ? '<span class="star-half">★</span>' : '')
+      + '★'.repeat(empty).split('').map(s => `<span class="star-empty">${s}</span>`).join('')
+      + '</span>';
+  }
+
+  function fmt(n) {
+    return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
+  }
+
+  function renderCard(skill) {
+    const verifiedBadge = skill.verified
+      ? '<span class="badge-verified">✓ Verified</span>'
+      : '';
+
+    const tags = (skill.tags || []).map(t =>
+      `<span class="tag">${t}</span>`
+    ).join('');
+
+    return `
+      <div class="card">
+        <div class="card-left">
+          <div class="card-title">
+            ${skill.name}
+            ${verifiedBadge}
+          </div>
+          <div class="card-summary">${skill.summary}</div>
+          ${tags ? `<div class="card-tags">${tags}</div>` : ''}
+        </div>
+        <div class="card-right">
+          <div class="score">${skill.trust_score.toFixed(1)}</div>
+          <div class="score-label">${stars(skill.trust_score)}</div>
+          <div class="usage">${fmt(skill.usage_count)} uses</div>
+        </div>
+      </div>
+    `;
+  }
+
+  fetch(INDEX_URL)
+    .then(r => r.json())
+    .then(skills => {
+      const sorted = [...skills].sort((a, b) => b.trust_score - a.trust_score);
+      document.getElementById('grid').innerHTML = sorted.map(renderCard).join('');
+      document.getElementById('meta').textContent =
+        `${skills.length} skills · scores updated nightly`;
+    })
+    .catch(err => {
+      document.getElementById('grid').innerHTML =
+        `<div class="error">Failed to load registry: ${err.message}</div>`;
+    });
+</script>
+</body>
+</html>
