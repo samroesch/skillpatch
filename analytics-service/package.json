@@ -1,7 +1,7 @@
 {
-  "name": "skill-broker-analytics",
+  "name": "skillpatch-analytics",
   "version": "0.1.0",
-  "description": "Opt-in usage event collector for the Skill Broker",
+  "description": "Opt-in usage event collector for Skillpatch",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

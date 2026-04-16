@@ -8,7 +8,7 @@
     "verified": true,
     "trust_score": 4.8,
     "usage_count": 2847,
-    "content_url": "https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/skills/meeting-notes-polisher.md",
+    "content_url": "https://raw.githubusercontent.com/samroesch/skillpatch/main/storage/skills/meeting-notes-polisher.md",
     "version": "1.0.0",
     "sha": "placeholder"
   },
@@ -21,7 +21,7 @@
     "verified": true,
     "trust_score": 4.5,
     "usage_count": 1920,
-    "content_url": "https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/skills/landing-page-launcher.md",
+    "content_url": "https://raw.githubusercontent.com/samroesch/skillpatch/main/storage/skills/landing-page-launcher.md",
     "version": "1.0.0",
     "sha": "placeholder"
   },
@@ -34,7 +34,7 @@
     "verified": true,
     "trust_score": 4.2,
     "usage_count": 1400,
-    "content_url": "https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/skills/pdf-processor.md",
+    "content_url": "https://raw.githubusercontent.com/samroesch/skillpatch/main/storage/skills/pdf-processor.md",
     "version": "1.0.0",
     "sha": "placeholder"
   },
@@ -47,7 +47,7 @@
     "verified": false,
     "trust_score": 3.1,
     "usage_count": 80,
-    "content_url": "https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/skills/csv-insight-kit.md",
+    "content_url": "https://raw.githubusercontent.com/samroesch/skillpatch/main/storage/skills/csv-insight-kit.md",
     "version": "0.9.0",
     "sha": "placeholder"
   }

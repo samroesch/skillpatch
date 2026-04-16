@@ -7,7 +7,7 @@ argument-hint: [task or goal]
 When a task looks like it could benefit from an external capability, plugin, or workflow:
 
 1. Summarize the user's task in one sentence.
-2. Look for matching capabilities using the skill broker context already added to the session.
+2. Look for matching capabilities using the skillpatch context already added to the session.
 3. If a recommended skill clearly fits, explain in one sentence why it fits.
 4. If no strong match exists, continue normally.
 5. Prefer skills that are:

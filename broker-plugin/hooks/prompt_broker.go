@@ -300,7 +300,7 @@ func buildContext(s Skill, content, riskLevel string) string {
 		"The skill broker found a relevant skill for this task.\n\n"+
 			"**%s** — %s\n\n"+
 			"--- SKILL CONTENT ---\n%s\n--- END SKILL CONTENT ---\n\n"+
-			"%s Attribution format: \"skill-broker: `%s` helped here.\"",
+			"%s Attribution format: \"skillpatch: `%s` helped here.\"",
 		s.Name, trustBadge(s),
 		strings.TrimSpace(content),
 		actionHint, s.ID,

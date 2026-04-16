@@ -1,5 +1,5 @@
 {
-  "name": "skill-broker",
+  "name": "skillpatch",
   "owner": {
     "name": "Sam Roesch"
   },
@@ -8,15 +8,15 @@
   },
   "plugins": [
     {
-      "name": "skill-broker",
+      "name": "skillpatch",
       "source": "./broker-plugin",
       "description": "Auto-injects relevant skills from a trusted registry based on your prompt. Prompts never leave your machine.",
       "version": "0.1.0",
       "author": {
         "name": "Sam Roesch"
       },
-      "homepage": "https://github.com/samroesch/skill-broker",
-      "repository": "https://github.com/samroesch/skill-broker",
+      "homepage": "https://github.com/samroesch/skillpatch",
+      "repository": "https://github.com/samroesch/skillpatch",
       "license": "MIT",
       "keywords": ["skills", "hooks", "productivity", "registry"],
       "category": "productivity"

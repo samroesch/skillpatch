@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Skill Broker hook — detects platform and executes the correct binary.
+DIR="$(cd "$(dirname "$0")" && pwd)"
+OS="$(uname -s 2>/dev/null | tr '[:upper:]' '[:lower:]')"
+ARCH="$(uname -m 2>/dev/null)"
+
+case "$OS" in
+  mingw*|msys*|cygwin*)
+    exec "$DIR/prompt_broker_windows_amd64.exe" "$@"
+    ;;
+  darwin)
+    case "$ARCH" in
+      arm64) exec "$DIR/prompt_broker_darwin_arm64"  "$@" ;;
+      *)     exec "$DIR/prompt_broker_darwin_amd64"  "$@" ;;
+    esac
+    ;;
+  linux)
+    case "$ARCH" in
+      aarch64|arm64) exec "$DIR/prompt_broker_linux_arm64"  "$@" ;;
+      *)             exec "$DIR/prompt_broker_linux_amd64"  "$@" ;;
+    esac
+    ;;
+  *)
+    # unknown platform — pass through silently
+    echo '{}'
+    exit 0
+    ;;
+esac

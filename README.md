@@ -1,4 +1,4 @@
-# Skill Broker
+# Skillpatch
 
 A trust-first skill registry and routing layer for Claude Code.
 

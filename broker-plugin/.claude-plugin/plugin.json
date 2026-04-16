@@ -1,7 +1,7 @@
 {
-  "name": "skill-broker",
+  "name": "skillpatch",
   "version": "0.1.0",
-  "description": "Prompt-time skill discovery broker for Claude Code",
+  "description": "Prompt-time skill discovery and injection for Claude Code",
   "author": {
     "name": "Sam Roesch"
   },
