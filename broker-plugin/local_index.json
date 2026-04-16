@@ -1,0 +1,54 @@
+[
+  {
+    "id": "meeting-notes-polisher",
+    "name": "Meeting Notes Polisher",
+    "summary": "Convert rough meeting notes into clean summaries and action items.",
+    "tags": ["notes", "meetings", "summaries", "productivity"],
+    "keywords": ["meeting", "notes", "summary", "action items", "minutes", "recap", "polisher", "agenda"],
+    "verified": true,
+    "trust_score": 4.8,
+    "usage_count": 2847,
+    "content_url": "https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/skills/meeting-notes-polisher.md",
+    "version": "1.0.0",
+    "sha": "placeholder"
+  },
+  {
+    "id": "landing-page-launcher",
+    "name": "Landing Page Launcher",
+    "summary": "Turn product notes into polished landing page structure and copy.",
+    "tags": ["marketing", "copy", "web", "landing page"],
+    "keywords": ["landing", "page", "copy", "website", "launch", "marketing", "hero", "headline", "product"],
+    "verified": true,
+    "trust_score": 4.5,
+    "usage_count": 1920,
+    "content_url": "https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/skills/landing-page-launcher.md",
+    "version": "1.0.0",
+    "sha": "placeholder"
+  },
+  {
+    "id": "pdf-processor",
+    "name": "PDF Processor",
+    "summary": "Extract, summarize, and restructure content from PDFs.",
+    "tags": ["pdf", "docs", "summarization"],
+    "keywords": ["pdf", "extract", "summarize", "document", "report", "parse", "read"],
+    "verified": true,
+    "trust_score": 4.2,
+    "usage_count": 1400,
+    "content_url": "https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/skills/pdf-processor.md",
+    "version": "1.0.0",
+    "sha": "placeholder"
+  },
+  {
+    "id": "csv-insight-kit",
+    "name": "CSV Insight Kit",
+    "summary": "Analyze CSVs and produce concise findings and charts guidance.",
+    "tags": ["csv", "analysis", "data"],
+    "keywords": ["csv", "spreadsheet", "analyze", "data", "chart", "rows", "columns", "dataset", "table"],
+    "verified": false,
+    "trust_score": 3.1,
+    "usage_count": 80,
+    "content_url": "https://raw.githubusercontent.com/samroesch/skill-broker/main/storage/skills/csv-insight-kit.md",
+    "version": "0.9.0",
+    "sha": "placeholder"
+  }
+]

@@ -1,0 +1,109 @@
+[
+  {
+    "id": "meeting-notes-polisher",
+    "name": "Meeting Notes Polisher",
+    "summary": "Convert rough meeting notes into clean summaries and action items.",
+    "tags": [
+      "notes",
+      "meetings",
+      "summaries",
+      "productivity"
+    ],
+    "keywords": [
+      "meeting",
+      "notes",
+      "summary",
+      "action items",
+      "minutes",
+      "recap",
+      "polisher",
+      "agenda"
+    ],
+    "verified": true,
+    "trust_score": 3,
+    "usage_count": 0,
+    "content_url": "",
+    "version": "1.0.0",
+    "install": "claude plugin install meeting-notes-polisher@skill-broker"
+  },
+  {
+    "id": "landing-page-launcher",
+    "name": "Landing Page Launcher",
+    "summary": "Turn product notes into polished landing page structure and copy.",
+    "tags": [
+      "marketing",
+      "copy",
+      "web",
+      "landing page"
+    ],
+    "keywords": [
+      "landing",
+      "page",
+      "copy",
+      "website",
+      "launch",
+      "marketing",
+      "hero",
+      "headline",
+      "product"
+    ],
+    "verified": true,
+    "trust_score": 3,
+    "usage_count": 0,
+    "content_url": "",
+    "version": "1.0.0",
+    "install": "claude plugin install landing-page-launcher@skill-broker"
+  },
+  {
+    "id": "pdf-processor",
+    "name": "PDF Processor",
+    "summary": "Extract, summarize, and restructure content from PDFs.",
+    "tags": [
+      "pdf",
+      "docs",
+      "summarization"
+    ],
+    "keywords": [
+      "pdf",
+      "extract",
+      "summarize",
+      "document",
+      "report",
+      "parse",
+      "read"
+    ],
+    "verified": true,
+    "trust_score": 3,
+    "usage_count": 0,
+    "content_url": "",
+    "version": "1.0.0",
+    "install": "claude plugin install pdf-processor@skill-broker"
+  },
+  {
+    "id": "csv-insight-kit",
+    "name": "CSV Insight Kit",
+    "summary": "Analyze CSVs and produce concise findings and charts guidance.",
+    "tags": [
+      "csv",
+      "analysis",
+      "data"
+    ],
+    "keywords": [
+      "csv",
+      "spreadsheet",
+      "analyze",
+      "data",
+      "chart",
+      "rows",
+      "columns",
+      "dataset",
+      "table"
+    ],
+    "verified": false,
+    "trust_score": 2,
+    "usage_count": 0,
+    "content_url": "",
+    "version": "0.9.0",
+    "install": "claude plugin install csv-insight-kit@skill-broker"
+  }
+]

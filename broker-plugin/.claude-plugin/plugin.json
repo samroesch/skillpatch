@@ -1,0 +1,20 @@
+{
+  "name": "skill-broker",
+  "version": "0.1.0",
+  "description": "Prompt-time skill discovery broker for Claude Code",
+  "author": {
+    "name": "Sam Roesch"
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/prompt_broker"
+          }
+        ]
+      }
+    ]
+  }
+}

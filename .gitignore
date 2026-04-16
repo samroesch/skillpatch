@@ -1,0 +1,15 @@
+# compiled binaries
+analytics-service/*.exe
+analytics-service/analytics
+broker-plugin/hooks/prompt_broker.exe
+
+# runtime
+broker-plugin/cache/
+storage/events.log
+
+# legacy / replaced
+broker-plugin/hooks/prompt_broker.py
+storage/skills.json
+
+# dev artifacts
+*.log
