@@ -3,6 +3,8 @@
     "id": "meeting-notes-polisher",
     "name": "Meeting Notes Polisher",
     "summary": "Convert rough meeting notes into clean summaries and action items.",
+    "category": "productivity",
+    "featured": true,
     "tags": [
       "notes",
       "meetings",
@@ -29,6 +31,8 @@
     "id": "landing-page-launcher",
     "name": "Landing Page Launcher",
     "summary": "Turn product notes into polished landing page structure and copy.",
+    "category": "development",
+    "featured": true,
     "tags": [
       "marketing",
       "copy",
@@ -56,6 +60,8 @@
     "id": "pdf-processor",
     "name": "PDF Processor",
     "summary": "Extract, summarize, and restructure content from PDFs.",
+    "category": "documents",
+    "featured": false,
     "tags": [
       "pdf",
       "docs",
@@ -80,6 +86,8 @@
     "id": "csv-insight-kit",
     "name": "CSV Insight Kit",
     "summary": "Analyze CSVs and produce concise findings and charts guidance.",
+    "category": "data",
+    "featured": false,
     "tags": [
       "csv",
       "analysis",
@@ -106,6 +114,8 @@
     "id": "docx",
     "name": "Word Document Editor",
     "summary": "Create, edit, and analyze Word documents with tracked changes, comments, and formatting.",
+    "category": "documents",
+    "featured": false,
     "tags": [
       "docs",
       "word",
@@ -135,6 +145,8 @@
     "id": "xlsx",
     "name": "Excel Spreadsheet Editor",
     "summary": "Create, edit, and analyze Excel spreadsheets with formulas, formatting, and data analysis.",
+    "category": "documents",
+    "featured": false,
     "tags": [
       "excel",
       "spreadsheet",
@@ -163,6 +175,8 @@
     "id": "pptx",
     "name": "PowerPoint Presentation Builder",
     "summary": "Create, edit, and analyze PowerPoint presentations with layouts, templates, and charts.",
+    "category": "documents",
+    "featured": false,
     "tags": [
       "presentation",
       "powerpoint",
@@ -191,6 +205,8 @@
     "id": "frontend-design",
     "name": "Frontend Design",
     "summary": "Avoid generic AI aesthetics and make bold design decisions. Optimized for React and Tailwind.",
+    "category": "development",
+    "featured": false,
     "tags": [
       "design",
       "frontend",
@@ -221,6 +237,8 @@
     "id": "web-artifacts-builder",
     "name": "Web Artifacts Builder",
     "summary": "Build complex HTML artifacts using React, Tailwind CSS, and shadcn/ui components.",
+    "category": "development",
+    "featured": false,
     "tags": [
       "html",
       "react",
@@ -250,6 +268,8 @@
     "id": "mcp-builder",
     "name": "MCP Server Builder",
     "summary": "Guide for creating high-quality MCP servers to integrate external APIs and services.",
+    "category": "development",
+    "featured": false,
     "tags": [
       "mcp",
       "api",
@@ -279,6 +299,8 @@
     "id": "webapp-testing",
     "name": "Web App Testing",
     "summary": "Test local web applications using Playwright for UI verification and debugging.",
+    "category": "development",
+    "featured": false,
     "tags": [
       "testing",
       "playwright",
@@ -308,6 +330,8 @@
     "id": "internal-comms",
     "name": "Internal Communications",
     "summary": "Write internal communications like status reports, newsletters, and FAQs.",
+    "category": "productivity",
+    "featured": false,
     "tags": [
       "writing",
       "communication",
@@ -336,6 +360,8 @@
     "id": "d3-visualization",
     "name": "D3.js Visualization",
     "summary": "Create interactive data visualizations using D3.js.",
+    "category": "data",
+    "featured": false,
     "tags": [
       "data",
       "visualization",

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Skillpatch MCP server — detects platform and executes the correct binary.
+DIR="$(cd "$(dirname "$0")" && pwd)"
+OS="$(uname -s 2>/dev/null | tr '[:upper:]' '[:lower:]')"
+ARCH="$(uname -m 2>/dev/null)"
+
+case "$OS" in
+  mingw*|msys*|cygwin*)
+    exec "$DIR/skill_server_windows_amd64.exe" "$@"
+    ;;
+  darwin)
+    case "$ARCH" in
+      arm64) exec "$DIR/skill_server_darwin_arm64"  "$@" ;;
+      *)     exec "$DIR/skill_server_darwin_amd64"  "$@" ;;
+    esac
+    ;;
+  linux)
+    case "$ARCH" in
+      aarch64|arm64) exec "$DIR/skill_server_linux_arm64"  "$@" ;;
+      *)             exec "$DIR/skill_server_linux_amd64"  "$@" ;;
+    esac
+    ;;
+  *)
+    exit 1
+    ;;
+esac

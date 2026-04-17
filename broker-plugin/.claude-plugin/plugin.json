@@ -1,20 +1,13 @@
 {
   "name": "skillpatch",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Prompt-time skill discovery and injection for Claude Code",
   "author": {
     "name": "Sam Roesch"
   },
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/prompt_broker"
-          }
-        ]
-      }
-    ]
+  "mcpServers": {
+    "skillpatch": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/mcp/skill_server"
+    }
   }
 }
