@@ -9,8 +9,7 @@
     "trust_score": 4.8,
     "usage_count": 2847,
     "content_url": "https://raw.githubusercontent.com/samroesch/skillpatch/main/storage/skills/meeting-notes-polisher.md",
-    "version": "1.0.0",
-    "sha": "placeholder"
+    "version": "1.0.0"
   },
   {
     "id": "landing-page-launcher",
@@ -22,8 +21,7 @@
     "trust_score": 4.5,
     "usage_count": 1920,
     "content_url": "https://raw.githubusercontent.com/samroesch/skillpatch/main/storage/skills/landing-page-launcher.md",
-    "version": "1.0.0",
-    "sha": "placeholder"
+    "version": "1.0.0"
   },
   {
     "id": "pdf-processor",
@@ -35,8 +33,7 @@
     "trust_score": 4.2,
     "usage_count": 1400,
     "content_url": "https://raw.githubusercontent.com/samroesch/skillpatch/main/storage/skills/pdf-processor.md",
-    "version": "1.0.0",
-    "sha": "placeholder"
+    "version": "1.0.0"
   },
   {
     "id": "csv-insight-kit",
@@ -48,7 +45,114 @@
     "trust_score": 3.1,
     "usage_count": 80,
     "content_url": "https://raw.githubusercontent.com/samroesch/skillpatch/main/storage/skills/csv-insight-kit.md",
-    "version": "0.9.0",
-    "sha": "placeholder"
+    "version": "0.9.0"
+  },
+  {
+    "id": "docx",
+    "name": "Word Document Editor",
+    "summary": "Create, edit, and analyze Word documents with tracked changes, comments, and formatting.",
+    "tags": ["docs", "word", "office", "writing"],
+    "keywords": ["word", "document", "docx", "write", "letter", "report", "edit", "tracked", "changes", "format", "microsoft"],
+    "verified": true,
+    "trust_score": 4.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/docx/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "id": "xlsx",
+    "name": "Excel Spreadsheet Editor",
+    "summary": "Create, edit, and analyze Excel spreadsheets with formulas, formatting, and data analysis.",
+    "tags": ["excel", "spreadsheet", "data", "office"],
+    "keywords": ["excel", "xlsx", "spreadsheet", "formula", "pivot", "workbook", "cells", "columns", "data", "worksheet"],
+    "verified": true,
+    "trust_score": 4.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/xlsx/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "id": "pptx",
+    "name": "PowerPoint Presentation Builder",
+    "summary": "Create, edit, and analyze PowerPoint presentations with layouts, templates, and charts.",
+    "tags": ["presentation", "powerpoint", "slides", "office"],
+    "keywords": ["powerpoint", "presentation", "slides", "pptx", "deck", "slide", "pitch", "keynote", "template"],
+    "verified": true,
+    "trust_score": 4.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/pptx/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "id": "frontend-design",
+    "name": "Frontend Design",
+    "summary": "Avoid generic AI aesthetics and make bold design decisions. Optimized for React and Tailwind.",
+    "tags": ["design", "frontend", "react", "tailwind", "ui"],
+    "keywords": ["ui", "design", "react", "tailwind", "component", "frontend", "interface", "layout", "aesthetic", "style", "css"],
+    "verified": true,
+    "trust_score": 4.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "id": "web-artifacts-builder",
+    "name": "Web Artifacts Builder",
+    "summary": "Build complex HTML artifacts using React, Tailwind CSS, and shadcn/ui components.",
+    "tags": ["html", "react", "tailwind", "artifacts", "frontend"],
+    "keywords": ["artifact", "html", "react", "tailwind", "shadcn", "component", "build", "web", "app", "interactive"],
+    "verified": true,
+    "trust_score": 4.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/web-artifacts-builder/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "id": "mcp-builder",
+    "name": "MCP Server Builder",
+    "summary": "Guide for creating high-quality MCP servers to integrate external APIs and services.",
+    "tags": ["mcp", "api", "integration", "development"],
+    "keywords": ["mcp", "server", "integration", "api", "tool", "protocol", "model", "context", "build", "create", "plugin"],
+    "verified": true,
+    "trust_score": 4.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/mcp-builder/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "id": "webapp-testing",
+    "name": "Web App Testing",
+    "summary": "Test local web applications using Playwright for UI verification and debugging.",
+    "tags": ["testing", "playwright", "automation", "qa"],
+    "keywords": ["test", "playwright", "browser", "automation", "e2e", "end-to-end", "testing", "selenium", "web", "verify", "debug"],
+    "verified": true,
+    "trust_score": 4.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/webapp-testing/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "id": "internal-comms",
+    "name": "Internal Communications",
+    "summary": "Write internal communications like status reports, newsletters, and FAQs.",
+    "tags": ["writing", "communication", "productivity", "business"],
+    "keywords": ["status", "report", "newsletter", "announcement", "internal", "communication", "update", "faq", "memo", "comms"],
+    "verified": true,
+    "trust_score": 4.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/internal-comms/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "id": "d3-visualization",
+    "name": "D3.js Visualization",
+    "summary": "Create interactive data visualizations using D3.js.",
+    "tags": ["data", "visualization", "d3", "charts"],
+    "keywords": ["d3", "visualization", "chart", "graph", "svg", "data", "visual", "plot", "interactive", "bar", "line"],
+    "verified": false,
+    "trust_score": 3.0,
+    "usage_count": 0,
+    "content_url": "https://raw.githubusercontent.com/chrisvoncsefalvay/claude-d3js-skill/main/SKILL.md",
+    "version": "1.0.0"
   }
 ]
