@@ -76,7 +76,7 @@
     "name": "PowerPoint Presentation Builder",
     "summary": "Create, edit, and analyze PowerPoint presentations with layouts, templates, and charts.",
     "tags": ["presentation", "powerpoint", "slides", "office"],
-    "keywords": ["powerpoint", "presentation", "slides", "pptx", "deck", "slide", "pitch", "keynote", "template"],
+    "keywords": ["powerpoint", "presentation", "slides", "pptx", "ppt", "deck", "slide", "pitch", "keynote", "template"],
     "verified": true,
     "trust_score": 4.0,
     "usage_count": 0,
