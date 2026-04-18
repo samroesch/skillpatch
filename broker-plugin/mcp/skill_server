@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 # Skillpatch MCP server — detects platform and executes the correct binary.
+#
+# Note: intentionally avoids `exec` on Windows. When Git Bash exec's a native
+# .exe, bash exits immediately (fork+exec, not a true exec). Claude Code detects
+# the bash process exiting and closes the stdio pipes before the Go binary can
+# respond. Keeping bash alive as a waiting parent preserves the pipe connection.
 DIR="$(cd "$(dirname "$0")" && pwd)"
 OS="$(uname -s 2>/dev/null | tr '[:upper:]' '[:lower:]')"
 ARCH="$(uname -m 2>/dev/null)"
 
 case "$OS" in
   mingw*|msys*|cygwin*)
-    exec "$DIR/skill_server_windows_amd64.exe" "$@"
+    "$DIR/skill_server_windows_amd64.exe" "$@"
     ;;
   darwin)
     case "$ARCH" in

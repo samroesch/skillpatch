@@ -1,6 +1,6 @@
 {
   "name": "skillpatch",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Prompt-time skill discovery and injection for Claude Code",
   "author": {
     "name": "Sam Roesch"
