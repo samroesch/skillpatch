@@ -1,14 +1,13 @@
 {
   "name": "skillpatch",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Prompt-time skill discovery and injection for Claude Code",
   "author": {
     "name": "Sam Roesch"
   },
   "mcpServers": {
     "skillpatch": {
-      "command": "bash",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/skill_server"]
+      "command": "${CLAUDE_PLUGIN_ROOT}/mcp/skill_server_windows_amd64.exe"
     }
   }
 }

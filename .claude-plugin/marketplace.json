@@ -11,7 +11,7 @@
       "name": "skillpatch",
       "source": "./broker-plugin",
       "description": "Auto-injects relevant skills from a trusted registry based on your prompt. Prompts never leave your machine.",
-      "version": "0.2.2",
+      "version": "0.2.3",
       "author": {
         "name": "Sam Roesch"
       },
