@@ -1,3 +1,4 @@
-# Force LF for shell scripts — CRLF breaks bash exec on Windows
+# Force LF for scripts — CRLF breaks bash exec and Node.js on Windows
 broker-plugin/mcp/skill_server text eol=lf
+broker-plugin/mcp/launcher.js text eol=lf
 broker-plugin/hooks/prompt_broker text eol=lf
