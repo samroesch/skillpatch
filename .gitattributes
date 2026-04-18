@@ -1,0 +1,3 @@
+# Force LF for shell scripts — CRLF breaks bash exec on Windows
+broker-plugin/mcp/skill_server text eol=lf
+broker-plugin/hooks/prompt_broker text eol=lf
